@@ -1,0 +1,48 @@
+apply from: "dependencies.gradle"
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'idea'
+
+buildscript {
+    apply from: "dependencies.gradle"
+
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven { url "https://dl.bintray.com/spekframework/spek-dev" }
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$ver.kotlin"
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven { url "https://dl.bintray.com/spekframework/spek-dev" }
+    }
+}
+
+dependencies {
+    implementation libraries.moshi
+    kapt libraries.moshiKotlinCompiler
+    implementation libraries.kotlinStd
+
+    testImplementation libraries.spekDsl
+    testImplementation libraries.assertj
+    testImplementation libraries.spekRunner
+
+    // spek requires kotlin-reflect, can be omitted if already in the classpath
+    testImplementation libraries.kotlinReflect
+    kaptTest libraries.moshiKotlinCompiler
+}
+
+test {
+    useJUnitPlatform {
+        includeEngines 'spek2'
+    }
+}

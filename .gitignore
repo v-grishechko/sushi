@@ -1,0 +1,15 @@
+#Other
+.DS_Store
+Thumbs.db
+tmp
+out/
+build/
+
+#Intelij idea
+.idea/
+*.iml
+local.properties
+
+## Gradle
+.gradle/
+build/
