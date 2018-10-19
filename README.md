@@ -27,7 +27,7 @@ class CrashlyticsErrorHandler: ErrorHandler {
 
 Sushi.registerErrorHandler(CrashlyticsErrorHandler())
 ```
-# License
+## License
 ```
 Copyright 2018 Vladislav Grishechko
 
